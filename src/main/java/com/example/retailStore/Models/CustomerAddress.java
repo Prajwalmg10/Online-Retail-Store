@@ -1,8 +1,6 @@
 package com.example.retailStore.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -11,7 +9,9 @@ import lombok.Data;
 public class CustomerAddress {
 
 
+    @Id
     @Column(name = "customer_addressId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int customerAddressId;
 
     @Column(name = "doorNo")
