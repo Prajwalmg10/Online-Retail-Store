@@ -3,10 +3,14 @@ package com.example.retailStore.Services.Implementation;
 import com.example.retailStore.Models.Customer;
 import com.example.retailStore.Repository.CustomerRepository;
 import com.example.retailStore.Services.CustomerServices;
+import com.example.retailStore.Util.ValidationHelper;
 import com.example.retailStore.uiResponse.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -16,8 +20,18 @@ public class CustomerServiceImpl implements CustomerServices {
     private CustomerRepository customerRepository;
 
     @Override
-    public String saveCustomer(Customer customerModel) {
-        return null;
+    public Customer saveCustomer(Customer customer) throws DataException {
+        try{
+             ValidationHelper.validateCustomerBean(customer);
+               Optional<Customer> existCustomer= customerRepository.findByCustomerEmail(customer.getCustomerEmail());
+               if(existCustomer.isPresent()){
+                   throw new DataException("Exception","Customer Email Address Already Exists", HttpStatus.BAD_REQUEST);
+               }
+
+            return customerRepository.save(customer);
+        }catch (Exception e){
+           throw new DataException("Exception",e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
