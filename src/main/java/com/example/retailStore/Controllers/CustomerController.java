@@ -19,7 +19,7 @@ public class CustomerController extends AbstarctController {
     @PostMapping("/save")
     public ResponseEntity<?> saveCustomer(Customer customer){
         try {
-             return  buildSuccessMessage(customerServices.saveCustomer(customer));
+             return  buildResponse(customerServices.saveCustomer(customer));
         }catch (DataException e){
              return  buildError(e);
         }
