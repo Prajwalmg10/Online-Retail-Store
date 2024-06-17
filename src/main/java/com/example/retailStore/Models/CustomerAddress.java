@@ -10,7 +10,7 @@ public class CustomerAddress {
 
 
     @Id
-    @Column(name = "customer_addressId")
+    @Column(name = "address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int customerAddressId;
 

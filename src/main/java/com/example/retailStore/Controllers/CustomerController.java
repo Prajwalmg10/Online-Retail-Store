@@ -6,6 +6,7 @@ import com.example.retailStore.uiResponse.UIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class CustomerController extends AbstarctController {
     private CustomerServices customerServices;
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveCustomer(Customer customer){
+    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer){
         try {
              return  buildResponse(customerServices.saveCustomer(customer));
         }catch (DataException e){

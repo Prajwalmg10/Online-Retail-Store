@@ -25,13 +25,11 @@ public class Customer {
     @Column(name="customer_email")
     private String customerEmail;
 
-    @Column(name ="shippingAddress")
-    @OneToMany(cascade = CascadeType.ALL,targetEntity = CustomerAddress.class)
-    @JoinColumn(name = "customer_addressId", referencedColumnName = "customer_addressId")
-    private List<CustomerAddress> customerBillingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billing_address_id", referencedColumnName = "address_id")
+    private CustomerAddress billingAddress;
 
-    @Column(name ="billingAddress")
-    @OneToMany(cascade = CascadeType.ALL,targetEntity = CustomerAddress.class)
-    @JoinColumn(name = "customer_addressId", referencedColumnName = "customer_addressId")
-    private List<CustomerAddress> customerShippingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_address_id", referencedColumnName = "address_id")
+    private CustomerAddress shippingAddress;
 }
