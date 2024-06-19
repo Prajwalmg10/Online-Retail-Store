@@ -1,11 +1,10 @@
 package com.example.retailStore.Models;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import javax.persistence.*;
 
 @Data
 @Getter
