@@ -8,8 +8,7 @@ public interface CustomerServices {
 
     Customer updateCustomer(Customer customer) throws DataException;
 
-    String deleteCustomer(String customerId) throws DataException;
+    String deleteCustomer(int customerId) throws DataException;
 
-    Customer getCustomer(String customerId) throws DataException;
-
+    Customer getCustomer(int customerId) throws DataException;
 }

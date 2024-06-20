@@ -10,4 +10,5 @@ public class StringConstants {
     public static final String PINCODE_REQUIRED ="Address, pincode is required" ;
     public static final String STREETNAME_REQUIRED = "Address, StreetName is required";
     public static final String INVALID_ADDRESSID = "Invalid AddressId";
+    public static final String INVALID_CUSTOMERID = "Invalid CustomerID";
 }

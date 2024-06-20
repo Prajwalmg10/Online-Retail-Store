@@ -11,9 +11,9 @@ public class CustomerAddress {
 
 
     @Id
-    @Column(name = "address_id")
+    @Column(name = "addressId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int customerAddressId;
+    int addressId;
 
     @Column(name = "doorNo")
     String doorNo;
@@ -30,4 +30,7 @@ public class CustomerAddress {
     @Column(name = "pincode")
     String pincode;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 }

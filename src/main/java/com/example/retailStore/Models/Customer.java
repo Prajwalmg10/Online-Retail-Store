@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Getter
@@ -24,11 +25,9 @@ public class Customer {
     @Column(name="customer_email")
     private String customerEmail;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "billing_address_id", referencedColumnName = "address_id")
-    private CustomerAddress billingAddress;
+    @OneToMany(mappedBy = "customer_address",cascade = CascadeType.ALL)
+    private List<CustomerAddress> billingAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shipping_address_id", referencedColumnName = "address_id")
-    private CustomerAddress shippingAddress;
+    @OneToMany(mappedBy = "customer_address",cascade = CascadeType.ALL)
+    private List<CustomerAddress> shippingAddress;
 }

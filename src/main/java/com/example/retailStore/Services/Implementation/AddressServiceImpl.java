@@ -8,11 +8,15 @@ import com.example.retailStore.Util.StringConstants;
 import com.example.retailStore.uiResponse.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 import static com.example.retailStore.Util.ValidationHelper.validateAddress;
 
+@Service
+@Transactional
 public class AddressServiceImpl implements AddressServices {
 
     @Autowired
