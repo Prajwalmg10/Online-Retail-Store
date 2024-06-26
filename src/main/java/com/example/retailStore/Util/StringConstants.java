@@ -15,4 +15,5 @@ public class StringConstants {
     public static final String PRODUCT_DESCRIPTION_REQUIRED = "Product description is required";
     public static final String PRODUCT_PRICE_REQUIRED = "Product Price is required";
     public static final String INVALID_PRODUCT_ID = "Invalid Product Id";
+    public static final String SUCCESS = "Success";
 }

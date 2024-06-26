@@ -29,13 +29,24 @@ public class ProductServiceImpl implements ProductServices {
 
     @Override
     public String deleteProduct(int productId) throws DataException {
-
-        return null;
+        Product product=searchProduct(productId);
+        if(NullEmptyUtils.isNull(product)){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.INVALID_PRODUCT_ID,HttpStatus.BAD_REQUEST);
+        }
+        return StringConstants.SUCCESS;
     }
 
     @Override
     public Product update(Product product) throws DataException {
-        return null;
+        ValidationHelper.validateProduct(product);
+        if(NullEmptyUtils.isNullorEmpty(product.getProductId())){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.INVALID_PRODUCT_ID,HttpStatus.BAD_REQUEST);
+        }
+        try{
+            return productRepository.save(product);
+        }catch (Exception e){
+            throw new DataException(StringConstants.EXCEPTION,e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
