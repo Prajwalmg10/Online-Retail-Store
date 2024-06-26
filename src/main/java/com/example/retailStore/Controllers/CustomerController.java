@@ -32,8 +32,8 @@ public class CustomerController extends AbstarctController {
         }
     }
 
-    @PostMapping("/get")
-    public ResponseEntity<?> getCustomer(@RequestParam int customer){
+    @GetMapping("/get")
+    public ResponseEntity<?> getCustomer(@RequestParam(name = "customerId") int customer){
         try {
             return  buildResponse(customerServices.getCustomer(customer));
         }catch (DataException e){
@@ -41,8 +41,8 @@ public class CustomerController extends AbstarctController {
         }
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<?> deleteCustomer(@RequestParam int customerId){
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteCustomer(@RequestParam(name = "customerId") int customerId){
         try {
             return  buildResponse(customerServices.deleteCustomer(customerId));
         }catch (DataException e){

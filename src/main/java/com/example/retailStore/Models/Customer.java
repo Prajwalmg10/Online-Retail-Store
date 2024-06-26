@@ -8,8 +8,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Getter
-@Setter
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -25,9 +23,11 @@ public class Customer {
     @Column(name="customer_email")
     private String customerEmail;
 
-    @OneToMany(mappedBy = "customer_address",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ba_customer_id",referencedColumnName = "customer_id")
     private List<CustomerAddress> billingAddress;
 
-    @OneToMany(mappedBy = "customer_address",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sa_customer_id",referencedColumnName = "customer_id")
     private List<CustomerAddress> shippingAddress;
 }

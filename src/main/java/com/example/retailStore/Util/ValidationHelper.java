@@ -2,6 +2,7 @@ package com.example.retailStore.Util;
 
 import com.example.retailStore.Models.Customer;
 import com.example.retailStore.Models.CustomerAddress;
+import com.example.retailStore.Models.Product;
 import com.example.retailStore.uiResponse.DataException;
 import org.springframework.http.HttpStatus;
 
@@ -36,6 +37,18 @@ public class ValidationHelper {
         }
         if(NullEmptyUtils.isEmpty(address.getStreetName())){
             throw new DataException(StringConstants.EXCEPTION,type+StringConstants.STREETNAME_REQUIRED, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public static void validateProduct(Product product) throws DataException {
+        if(NullEmptyUtils.isEmpty(product.getProductName())){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.PRODUCT_NAME_REQUIRED, HttpStatus.BAD_REQUEST);
+        }
+        if(NullEmptyUtils.isEmpty(product.getDescription())){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.PRODUCT_DESCRIPTION_REQUIRED, HttpStatus.BAD_REQUEST);
+        }
+        if(NullEmptyUtils.isNullorEmpty(product.getProductPrice())){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.PRODUCT_PRICE_REQUIRED, HttpStatus.BAD_REQUEST);
         }
     }
 }

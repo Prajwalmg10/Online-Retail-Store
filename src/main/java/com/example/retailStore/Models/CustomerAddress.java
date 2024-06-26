@@ -29,8 +29,4 @@ public class CustomerAddress {
 
     @Column(name = "pincode")
     String pincode;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
 }

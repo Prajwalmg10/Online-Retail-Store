@@ -36,18 +36,6 @@ public class CustomerServiceImpl implements CustomerServices {
                if(existCustomer.isPresent()){
                    throw new DataException("Exception","Customer Email Address Already Exists", HttpStatus.BAD_REQUEST);
                }
-               List<CustomerAddress> addresses=new ArrayList<>();
-            for(CustomerAddress address: customer.getBillingAddress()){
-                      addresses.add(addressServices.saveAddress(address,"Billing"));
-                   }
-
-               customer.setBillingAddress(addresses);
-
-            List<CustomerAddress> finalAddresses = new ArrayList<>();
-            for(CustomerAddress address: customer.getShippingAddress()){
-                    finalAddresses.add(addressServices.saveAddress(address,"Shipping"));
-                }
-            customer.setShippingAddress(finalAddresses);
 
             return customerRepository.save(customer);
         }catch (Exception e){
