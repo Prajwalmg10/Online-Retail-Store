@@ -9,6 +9,7 @@ import com.example.retailStore.Util.NullEmptyUtils;
 import com.example.retailStore.Util.StringConstants;
 import com.example.retailStore.Util.ValidationHelper;
 import com.example.retailStore.uiResponse.DataException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Slf4j
 public class CustomerServiceImpl implements CustomerServices {
 
     @Autowired
@@ -37,9 +38,10 @@ public class CustomerServiceImpl implements CustomerServices {
                if(existCustomer.isPresent()){
                    throw new DataException("Exception","Customer Email Address Already Exists", HttpStatus.BAD_REQUEST);
                }
-
+            log.info("Saving new customer");
             return customerRepository.save(customer);
         }catch (Exception e){
+            log.error(e.getMessage());
            throw new DataException("Exception",e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
