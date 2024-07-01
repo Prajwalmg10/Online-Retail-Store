@@ -1,8 +1,13 @@
 package com.example.retailStore.Models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "order")
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

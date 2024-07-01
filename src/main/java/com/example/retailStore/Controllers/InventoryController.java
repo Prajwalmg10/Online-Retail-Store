@@ -35,7 +35,7 @@ public class InventoryController extends AbstarctController{
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteInventory(@RequestParam int inventoryId){
         try{
-            return buildResponse(inventoryServices.deleteInventory(inventoryId));
+            return buildSuccessMessage(inventoryServices.deleteInventory(inventoryId));
         }catch (DataException e){
             return buildError(e);
         }

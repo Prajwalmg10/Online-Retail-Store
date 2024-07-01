@@ -2,6 +2,7 @@ package com.example.retailStore.Util;
 
 import com.example.retailStore.Models.Customer;
 import com.example.retailStore.Models.CustomerAddress;
+import com.example.retailStore.Models.Inventory;
 import com.example.retailStore.Models.Product;
 import com.example.retailStore.uiResponse.DataException;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,15 @@ public class ValidationHelper {
         }
         if(NullEmptyUtils.isNullorEmpty(product.getProductPrice())){
             throw new DataException(StringConstants.EXCEPTION,StringConstants.PRODUCT_PRICE_REQUIRED, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public static void validateInventory(Inventory inventory) throws DataException {
+        if(NullEmptyUtils.isNullorEmpty(inventory.getProductId())){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.INVALID_PRODUCT_ID, HttpStatus.BAD_REQUEST);
+        }
+        if(NullEmptyUtils.isNullorEmpty(inventory.getQuantity())||inventory.getQuantity()<0){
+            throw new DataException(StringConstants.EXCEPTION,StringConstants.PRODUCT_QUANTITY_REQUIRED, HttpStatus.BAD_REQUEST);
         }
     }
 }
